@@ -57,24 +57,23 @@ class A4988:
         self.deinit()
 
 # Initialize two stepper motors
-stepper_x = A4988(DIR=board.A3, STEP=board.A2)  # X-axis motor
-stepper_y = A4988(DIR=board.A7, STEP=board.A6)  # Y-axis motor
+stepper_x = A4988(DIR=board.A7, STEP=board.A6)  # X-axis motor
+stepper_y = A4988(DIR=board.A3, STEP=board.A2)  # Y-axis motor
 
 print("Starting stepper motor test.")
 
-speed = 800
+speed = 700
 
 while True:
     # Move X-axis motor
     print(f"Moving X-axis motor at {speed} steps/sec.")
-    stepper_x.move_sync(1000, speed)
+    stepper_x.move_sync(2000, speed)
     time.sleep(1.0)
-    stepper_x.move_sync(-1000, speed)
+    stepper_x.move_sync(-2000, speed)
     time.sleep(1.0)
-
     # Move Y-axis motor
     print(f"Moving Y-axis motor at {speed} steps/sec.")
-    stepper_y.move_sync(1000, speed)
+    stepper_y.move_sync(-7000, speed)
     time.sleep(1.0)
-    stepper_y.move_sync(-1000, speed)
+    stepper_y.move_sync(7000, speed)
     time.sleep(1.0)
