@@ -75,9 +75,6 @@ while True:
 
         # Check if both have reached after stepping
         if currentPosX == xPos[posIndex] and currentPosY == yPos[posIndex]:
-            if posIndex < posLength - 1:
-                posIndex += 1
-                xReached, yReached = False, False  # Reset for the next position
-                print(f"Target reached. Moving to new target: X={xPos[posIndex]}, Y={yPos[posIndex]}")
-            else:
-                print("Final position reached.")
+            posIndex += 1
+            xReached, yReached = False, False  # Reset for the next position
+            print(f"Target reached. Moving to new target: X={xPos[posIndex]}, Y={yPos[posIndex]}")
