@@ -53,6 +53,7 @@ posIndex = 0
 xReached = False
 yReached = False
 endReached = False
+
 while True:
     while endReached == False:
         if posIndex == posLength - 1:
