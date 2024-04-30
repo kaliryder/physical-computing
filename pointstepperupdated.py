@@ -29,9 +29,9 @@ def step(mStep,mDir,direction,motorNum):
     global currentPosY
     if motorNum == 1:
         if direction == True:
-            currentPosY = currentPosY + 1
+            currentPosY = currentPosY + 3
         else:
-            currentPosY = currentPosY - 1
+            currentPosY = currentPosY - 3
     elif motorNum == 2:
         if direction == True:
             currentPosX = currentPosX + 1
@@ -39,9 +39,8 @@ def step(mStep,mDir,direction,motorNum):
             currentPosX = currentPosX - 1
     mDir.value = direction
     mStep.value = True
-    time.sleep(0.001)
+    time.sleep(0.000001)
     mStep.value = False
-    time.sleep(0.001)
     print(str(currentPosX )+ " : " + str(currentPosY))
 
 # Step info setup
@@ -62,7 +61,7 @@ while True:
 
         # Determine if the target is reached for both axes
         xReached = (currentPosX == xPos[posIndex])
-        yReached = (currentPosY == yPos[posIndex])
+        yReached = abs(currentPosY - yPos[posIndex]) <= 3
 
         if not xReached:
             direction = (currentPosX < xPos[posIndex])
