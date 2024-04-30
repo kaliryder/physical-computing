@@ -29,24 +29,31 @@ def step(mStep,mDir,direction,motorNum):
     global currentPosY
     if motorNum == 1:
         if direction == True:
-            currentPosY = currentPosY + 3
+            currentPosY = currentPosY + 1
         else:
-            currentPosY = currentPosY - 3
+            currentPosY = currentPosY - 1
+        mDir.value = direction
+        mStep.value = True
+        time.sleep(0.000001)
+        mStep.value = False
+        time.sleep(0.000001)
+        print(str(currentPosX )+ " : " + str(currentPosY))
     elif motorNum == 2:
         if direction == True:
             currentPosX = currentPosX + 1
         else:
             currentPosX = currentPosX - 1
-    mDir.value = direction
-    mStep.value = True
-    time.sleep(0.000001)
-    mStep.value = False
-    print(str(currentPosX )+ " : " + str(currentPosY))
+        mDir.value = direction
+        mStep.value = True
+        time.sleep(0.000001)
+        mStep.value = False
+        time.sleep(0.000001)
+        print(str(currentPosX )+ " : " + str(currentPosY))
 
 # Step info setup
-xPos = [-1221, -1221, -4477, -4477, 0]
-yPos = [4500, 13500, 13500, 4500, 0]
-posLength = 5
+xPos = [-1221, -1221, -4477, -4477, -1221, 0]
+yPos = [4500, 13500, 13500, 4500, 4500, 0]
+posLength = 6
 posIndex = 0
 xReached = False
 yReached = False
@@ -61,19 +68,23 @@ while True:
 
         # Determine if the target is reached for both axes
         xReached = (currentPosX == xPos[posIndex])
-        yReached = abs(currentPosY - yPos[posIndex]) <= 3
+        yReached = (currentPosY == yPos[posIndex])
 
         if not xReached:
             direction = (currentPosX < xPos[posIndex])
+            time.sleep(0.000001)
             step(motor2Step, motor2Dir, direction, 2)
+            time.sleep(0.000001)
             print(f"Stepping X to {'increase' if direction else 'decrease'}: {currentPosX}")
         if not yReached:
             direction = (currentPosY < yPos[posIndex])
+            time.sleep(0.000001)
             step(motor1Step, motor1Dir, direction, 1)
+            time.sleep(0.000001)
             print(f"Stepping Y to {'increase' if direction else 'decrease'}: {currentPosY}")
 
         # Check if both have reached after stepping
-        if currentPosX == xPos[posIndex] and currentPosY == yPos[posIndex]:
+        if currentPosX == xPos[posIndex] and (currentPosY == yPos[posIndex]):
             posIndex += 1
             xReached, yReached = False, False  # Reset for the next position
             print(f"Target reached. Moving to new target: X={xPos[posIndex]}, Y={yPos[posIndex]}")
