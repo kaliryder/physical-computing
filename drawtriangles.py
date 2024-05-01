@@ -51,9 +51,9 @@ def step(mStep,mDir,direction,motorNum):
         print(str(currentPosX )+ " : " + str(currentPosY))
 
 # Step info setup
-xPos = [-1221, -2849, -4477, -2849, -1221, -4477, -2849, 0]
-yPos = [3000, 15000, 3000, 3000, 15000, 15000, 3000, 0]
-posLength = 8
+xPos = [-1221, -2849, -4477, -2849, -1221, -4477, -2849, 0, -1221, -2849, -4477, -2849, -1221, -4477, -2849, 0]
+yPos = [3000, 15000, 3000, 3000, 15000, 15000, 3000, 0, 3000, 15000, 3000, 3000, 15000, 15000, 3000, 0]
+posLength = 16
 posIndex = 0
 xReached = False
 yReached = False
